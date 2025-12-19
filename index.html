@@ -33,7 +33,7 @@
         <div class="weather-status text-white text-center">
             <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
             <h1 id="showInputCity">Dhaka</h1>
-            <h3><span id="temparature">38.06</span>&deg;C</h3>
+            <h3><span id="temperature">38.06</span>&deg;C</h3>
             <h1 class="lead" id="weather-condition">Clouds</h1>
         </div>
     </div>
@@ -49,7 +49,7 @@
                 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inpuCity}&units=metric&APPID=${apiKey}`)
                 .then(res => res.json())
                 .then(data => {
-                document.getElementById('temparature').innerText = data.main.temp
+                document.getElementById('temperature').innerText = data.main.temp
                 document.getElementById('weather-condition').innerText = data.weather[0].main
                 document.getElementById('showInputCity').innerText = data.name
             })
