@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Temperature Hot</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url(images/bg-image.jpg) no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="col-md-6 m-auto py-5">
+            <div class="input-group mb-3">
+                <!-- Enter a location for Weather -->
+                <input type="text" id="city" class="form-control" placeholder="Enter a location for Weather ...">
+                <div class="input-group-append">
+                    <!-- Search Button -->
+                    <button type="button" class="btn btn-danger" id="search-btn">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="weather-status text-white text-center">
+            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 id="showInputCity">Dhaka</h1>
+            <h3><span id="temparature">38.06</span>&deg;C</h3>
+            <h1 class="lead" id="weather-condition">Clouds</h1>
+        </div>
+    </div>
+    <script>
+        const apiKey = "caf3dbfcc4990f5c9a453bb4a155527f";
+
+        const searchBtn = document.getElementById('search-btn')
+        searchBtn.addEventListener('click', function () {
+            const inpuCity = document.getElementById('city').value
+            if (inpuCity === '') {
+                alert('Enter a valid City Name')
+            } else {
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inpuCity}&units=metric&APPID=${apiKey}`)
+                .then(res => res.json())
+                .then(data => {
+                document.getElementById('temparature').innerText = data.main.temp
+                document.getElementById('weather-condition').innerText = data.weather[0].main
+                document.getElementById('showInputCity').innerText = data.name
+            })
+            .catch(err => {alert('Type name of city properly')} )
+                
+            }
+            })
+
+    </script>
+</body>
+
+</html>
